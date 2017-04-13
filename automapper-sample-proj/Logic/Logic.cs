@@ -1,0 +1,106 @@
+﻿using Log.Contracts;
+using Repo.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using DataModels = Repo.EF.Models;
+using DomainModels = Models;
+
+namespace Logic
+{
+	public class Logic
+	{
+		private readonly ICustomLog _logger;
+		private readonly IMappingDecorator<DataModels.Employee, DomainModels.Employee> _mapping;
+		private Logic(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
+		{
+			_mapping = mapping;
+			_logger = logger;
+		}
+
+		public static Logic CreateLogicWithMappingDecoratorAndLogger
+			(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
+		{
+			return new Logic(mapping, logger);
+		}
+
+		public void AddEmployee(DomainModels.Employee domainEntity)
+		{
+			try
+			{
+				_mapping.AddDomainEntity(domainEntity);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to add employee");
+			}
+		}
+
+		public void UpdateEmployee(DomainModels.Employee domainEntity)
+		{
+			try
+			{
+				_mapping.UpdateDomainEntity(domainEntity);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to update employee");
+				throw;
+			}
+		}
+
+		public DomainModels.Employee GetEmployee(long id)
+		{
+			try
+			{
+				var result = _mapping.GetDomainEntity(id);
+				return result;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to get employee");
+			}
+			return null;
+		}
+
+		public IEnumerable<DomainModels.Employee> GetAllEmployees()
+		{
+			try
+			{
+				var results = _mapping.GetAllDomainEntities();
+				return results;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to get all employees");
+			}
+			return new List<DomainModels.Employee>();
+		}
+
+		public void DeleteEmployee(DomainModels.Employee employee)
+		{
+			try
+			{
+				_mapping.DeleteDomainEntity(employee);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to delete employee");
+			}
+		}
+
+		public IEnumerable<DomainModels.Employee> FindEmployees(Expression<Func<DomainModels.Employee, bool>> predicate)
+		{
+			try
+			{
+				var results = _mapping.FindAllDomainEntities(predicate);
+				return results;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Not able to find employee");
+			}
+			return new List<DomainModels.Employee>();
+		}
+	}
+}
