@@ -49,6 +49,30 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="Disposable.cs" />
+    <Compile Include="Migrations\201704141831442_employee-status-relations.cs" />
+    <Compile Include="Migrations\201704141831442_employee-status-relations.Designer.cs">
+      <DependentUpon>201704141831442_employee-status-relations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141849503_alter-relation.cs" />
+    <Compile Include="Migrations\201704141849503_alter-relation.Designer.cs">
+      <DependentUpon>201704141849503_alter-relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141852281_alter-relation-v2.cs" />
+    <Compile Include="Migrations\201704141852281_alter-relation-v2.Designer.cs">
+      <DependentUpon>201704141852281_alter-relation-v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141901539_alter-relation-v3.cs" />
+    <Compile Include="Migrations\201704141901539_alter-relation-v3.Designer.cs">
+      <DependentUpon>201704141901539_alter-relation-v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141903181_alter-relation-v4.cs" />
+    <Compile Include="Migrations\201704141903181_alter-relation-v4.Designer.cs">
+      <DependentUpon>201704141903181_alter-relation-v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141905474_alter-relation-v5.cs" />
+    <Compile Include="Migrations\201704141905474_alter-relation-v5.Designer.cs">
+      <DependentUpon>201704141905474_alter-relation-v5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Status.cs" />
@@ -70,6 +94,25 @@
       <Name>Repo.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704141831442_employee-status-relations.resx">
+      <DependentUpon>201704141831442_employee-status-relations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141849503_alter-relation.resx">
+      <DependentUpon>201704141849503_alter-relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141852281_alter-relation-v2.resx">
+      <DependentUpon>201704141852281_alter-relation-v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141901539_alter-relation-v3.resx">
+      <DependentUpon>201704141901539_alter-relation-v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141903181_alter-relation-v4.resx">
+      <DependentUpon>201704141903181_alter-relation-v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141905474_alter-relation-v5.resx">
+      <DependentUpon>201704141905474_alter-relation-v5.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

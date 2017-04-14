@@ -1,5 +1,4 @@
-﻿using Log.Contracts;
-using Repo.Contracts;
+﻿using Repo.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -27,11 +27,11 @@ namespace Repo.EF.Migrations
 			//    );
 			//
 
-			context.Status.AddOrUpdate( p => p, 
-				new Models.Status { Id = 1, ContractType = "FullTime" },
-				new Models.Status { Id = 2, ContractType = "PartTime" }
-				);
-			context.SaveChanges();
+			//context.Status.AddOrUpdate( p => p, 
+			//	new Models.Status { Id = 1, ContractType = "FullTime" },
+			//	new Models.Status { Id = 2, ContractType = "PartTime" }
+			//	);
+			//context.SaveChanges();
         }
     }
 }
