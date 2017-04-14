@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using DataModels = Repo.EF.Models;
-using DomainModels = Models;
+using DomainModels = Domain.Models;
 
-namespace Logic
+namespace Domain.Logic
 {
 	public class Logic
 	{

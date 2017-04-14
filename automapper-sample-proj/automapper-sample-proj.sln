@@ -21,9 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo.Contracts", "Repo.Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo.Mapping", "Repo.Mapping\Repo.Mapping.csproj", "{A7CFBC8C-1AF0-497B-A3CA-7D6DD84D9A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{B662734C-BCBF-4F65-93CB-B1BD0CF13468}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Models", "Models\Domain.Models.csproj", "{B662734C-BCBF-4F65-93CB-B1BD0CF13468}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{2C573B17-7229-4BD1-83C9-7D34E286EBBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Logic", "Logic\Domain.Logic.csproj", "{2C573B17-7229-4BD1-83C9-7D34E286EBBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTests", "ConsoleTests\ConsoleTests.csproj", "{07CF1EB0-C68D-4FB3-AE9C-04557CAF12E2}"
 EndProject

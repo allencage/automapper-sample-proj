@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Log.Logic;
-using Logic;
 using Repo.EF;
 using Repo.Mapping;
-using System;
+using Domain.Logic;
 using DataModels = Repo.EF.Models;
-using DomainModels = Models;
+using DomainModels = Domain.Models;
 
 namespace ConsoleTests
 {
-	class Program
+    class Program
 	{
 		static void Main(string[] args)
 		{
@@ -25,9 +24,8 @@ namespace ConsoleTests
             {
                 var repo = Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
                 var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
-                var logic = Logic.Logic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
-                var emp = logic.GetEmployee(2);
-                logic.DeleteEmployee(emp);
+                var logic = Logic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
+                logic.AddEmployee(CreateEmployee());
                 unit.Commit();
             }
             //Console.Read();

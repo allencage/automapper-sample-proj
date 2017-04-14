@@ -7,8 +7,8 @@
     <ProjectGuid>{2C573B17-7229-4BD1-83C9-7D34E286EBBC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logic</RootNamespace>
-    <AssemblyName>Logic</AssemblyName>
+    <RootNamespace>Domain.Logic</RootNamespace>
+    <AssemblyName>Domain.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,9 +48,9 @@
       <Project>{78527E57-6DC6-40C6-AEB6-F8D88BF0A64A}</Project>
       <Name>Log.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Domain.Models.csproj">
       <Project>{b662734c-bcbf-4f65-93cb-b1bd0cf13468}</Project>
-      <Name>Models</Name>
+      <Name>Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repo.Contracts\Repo.Contracts.csproj">
       <Project>{1a21119f-c02e-4f64-8cc6-c5c9d696ea78}</Project>

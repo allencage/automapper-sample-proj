@@ -68,13 +68,13 @@
       <Project>{38aa7e7c-d1c2-4e55-b783-1b66a013ff2a}</Project>
       <Name>Log.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Logic\Logic.csproj">
+    <ProjectReference Include="..\Logic\Domain.Logic.csproj">
       <Project>{2c573b17-7229-4bd1-83c9-7d34e286ebbc}</Project>
-      <Name>Logic</Name>
+      <Name>Domain.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Domain.Models.csproj">
       <Project>{b662734c-bcbf-4f65-93cb-b1bd0cf13468}</Project>
-      <Name>Models</Name>
+      <Name>Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repo.Contracts\Repo.Contracts.csproj">
       <Project>{1a21119f-c02e-4f64-8cc6-c5c9d696ea78}</Project>
