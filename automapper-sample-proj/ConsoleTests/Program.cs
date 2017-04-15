@@ -24,7 +24,7 @@ namespace ConsoleTests
             {
                 var repo = Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
                 var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
-                var logic = Logic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
+                var logic = EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
                 logic.AddEmployee(CreateEmployee());
                 unit.Commit();
             }

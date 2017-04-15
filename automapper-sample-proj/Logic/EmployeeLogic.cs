@@ -1,4 +1,5 @@
-﻿using Log.Contracts;
+﻿using Domain.Contracts;
+using Log.Contracts;
 using Repo.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,20 @@ using DomainModels = Domain.Models;
 
 namespace Domain.Logic
 {
-	public class Logic
+	public class EmployeeLogic : IEmployeeLogic<DomainModels.Employee>
 	{
 		private readonly ICustomLog _logger;
 		private readonly IMappingDecorator<DataModels.Employee, DomainModels.Employee> _mapping;
-		private Logic(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
+		private EmployeeLogic(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
 		{
 			_mapping = mapping;
 			_logger = logger;
 		}
 
-		public static Logic CreateLogicWithMappingDecoratorAndLogger
+		public static EmployeeLogic CreateLogicWithMappingDecoratorAndLogger
 			(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
 		{
-			return new Logic(mapping, logger);
+			return new EmployeeLogic(mapping, logger);
 		}
 
 		public void AddEmployee(DomainModels.Employee domainEntity)
