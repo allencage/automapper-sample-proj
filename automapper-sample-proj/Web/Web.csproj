@@ -199,6 +199,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -220,6 +221,18 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Contracts\Domain.Contracts.csproj">
+      <Project>{6af4c461-de71-4b4b-b73a-7957c9939b2f}</Project>
+      <Name>Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj">
+      <Project>{2c573b17-7229-4bd1-83c9-7d34e286ebbc}</Project>
+      <Name>Domain.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Models\Domain.Models.csproj">
+      <Project>{b662734c-bcbf-4f65-93cb-b1bd0cf13468}</Project>
+      <Name>Domain.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Log.Contracts\Log.Contracts.csproj">
       <Project>{78527e57-6dc6-40c6-aeb6-f8d88bf0a64a}</Project>
       <Name>Log.Contracts</Name>
@@ -227,14 +240,6 @@
     <ProjectReference Include="..\Log.Logic\Log.Logic.csproj">
       <Project>{38aa7e7c-d1c2-4e55-b783-1b66a013ff2a}</Project>
       <Name>Log.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logic\Domain.Logic.csproj">
-      <Project>{2c573b17-7229-4bd1-83c9-7d34e286ebbc}</Project>
-      <Name>Domain.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Domain.Models.csproj">
-      <Project>{b662734c-bcbf-4f65-93cb-b1bd0cf13468}</Project>
-      <Name>Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repo.Contracts\Repo.Contracts.csproj">
       <Project>{1a21119f-c02e-4f64-8cc6-c5c9d696ea78}</Project>

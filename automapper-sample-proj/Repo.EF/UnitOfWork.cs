@@ -10,6 +10,13 @@ namespace Repo.EF
         private ICustomLog _logger;
         private DbContext _dbContext;
         public DbContext DataContext => _dbContext ?? (_dbContext = new DataContext());
+		private Repository<Models.Employee> _repo;
+		public Repository<Models.Employee> Repo => _repo ?? (_repo = Repository<Models.Employee>.CreateRepositoryWithDbContext(DataContext));
+
+		public UnitOfWork()
+		{
+
+		}
 
         private UnitOfWork(ICustomLog logger)
         {

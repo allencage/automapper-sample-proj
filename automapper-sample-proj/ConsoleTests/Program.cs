@@ -20,16 +20,23 @@ namespace ConsoleTests
 				cfg.CreateMap<DataModels.Status, DomainModels.Status>().ReverseMap();
 			});
 			var mapper = mapperConfig.CreateMapper();
-            using(var unit = UnitOfWork.CreateUnitOfWorkWithCustomLog(logger))
-            {
-                var repo = Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
-                var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
-                var logic = EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
-                logic.AddEmployee(CreateEmployee());
-                unit.Commit();
-            }
-            //Console.Read();
-        }
+			using (var unit = UnitOfWork.CreateUnitOfWorkWithCustomLog(logger))
+			{
+				var repo = Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
+				var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
+				var logic = EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
+				logic.AddEmployee(CreateEmployee());
+				logic.AddEmployee(CreateEmployee());
+				logic.AddEmployee(CreateEmployee());
+				unit.Commit();
+			}
+
+			//using(var unit = new UnitOfWork())
+			//{
+			//	var results = unit.Repo.GetAll();
+			//}
+			//Console.Read();
+		}
 
         static DomainModels.Employee CreateEmployee()
         {
