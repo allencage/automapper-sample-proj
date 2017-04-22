@@ -16,18 +16,18 @@ namespace ConsoleTests
 
 			var mapperConfig = new MapperConfiguration(cfg =>
 			{
-				cfg.CreateMap<DataModels.Employee, DomainModels.Employee>().ReverseMap();
+				cfg.CreateMap<DataModels.Employee, DomainModels.EmployeeDomainModel>().ReverseMap();
 				cfg.CreateMap<DataModels.Status, DomainModels.Status>().ReverseMap();
 			});
 			var mapper = mapperConfig.CreateMapper();
 			using (var unit = UnitOfWork.CreateUnitOfWorkWithCustomLog(logger))
 			{
 				var repo = Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
-				var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
-				var logic = EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
-				logic.AddEmployee(CreateEmployee());
-				logic.AddEmployee(CreateEmployee());
-				logic.AddEmployee(CreateEmployee());
+				var mappingDecorator = MappingDecorator<DataModels.Employee, DomainModels.EmployeeDomainModel>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
+				//var logic = EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
+				//logic.AddEmployee(CreateEmployee());
+				//logic.AddEmployee(CreateEmployee());
+				//logic.AddEmployee(CreateEmployee());
 				unit.Commit();
 			}
 
@@ -38,9 +38,9 @@ namespace ConsoleTests
 			//Console.Read();
 		}
 
-        static DomainModels.Employee CreateEmployee()
+        static DomainModels.EmployeeDomainModel CreateEmployee()
         {
-            return new DomainModels.Employee
+            return new DomainModels.EmployeeDomainModel
             {
                 FirstName = "Alin",
                 LastName = "Ciuca",

@@ -1,17 +1,24 @@
-﻿using Repo.EF;
+﻿using Domain.Contracts;
+using Repo.EF;
 using System.Web.Mvc;
+using DomainModels = Domain.Models;
 
 namespace Web.Controllers
 {
 	public class HomeController : Controller
 	{
+		IEmployeeLogic _logic;
+
+		public HomeController(IEmployeeLogic logic)
+		{
+			_logic = logic;
+		}
+
 		public ActionResult Index()
 		{
-			using(var unit = new UnitOfWork())
-			{
-				var results = unit.Repo.GetAll();
-				return View(results);
-			}
+
+			var results = _logic.GetAllEmployees();
+			return View(results);
 		}
 
 		public ActionResult Edit(long id = 0)

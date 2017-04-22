@@ -1,6 +1,8 @@
-﻿namespace Domain.Models
+﻿using Domain.Contracts;
+
+namespace Domain.Models
 {
-    public class Employee
+    public class EmployeeDomainModel : IDomainModel
 	{
 		public long Id { get; set; }
 		public string FirstName { get; set; }

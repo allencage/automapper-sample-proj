@@ -4,28 +4,21 @@ using Repo.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using DataModels = Repo.EF.Models;
-using DomainModels = Domain.Models;
 
 namespace Domain.Logic
 {
-	public class EmployeeLogic : IEmployeeLogic<DomainModels.Employee>
+	public class EmployeeLogic : IEmployeeLogic
 	{
 		private readonly ICustomLog _logger;
-		private readonly IMappingDecorator<DataModels.Employee, DomainModels.Employee> _mapping;
-		private EmployeeLogic(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
+		private readonly IMappingDecorator<IDataModel, IDomainModel> _mapping;
+
+		public EmployeeLogic(IMappingDecorator<IDataModel, IDomainModel> mapping, ICustomLog logger)
 		{
 			_mapping = mapping;
 			_logger = logger;
 		}
 
-		public static EmployeeLogic CreateLogicWithMappingDecoratorAndLogger
-			(IMappingDecorator<DataModels.Employee, DomainModels.Employee> mapping, ICustomLog logger)
-		{
-			return new EmployeeLogic(mapping, logger);
-		}
-
-		public void AddEmployee(DomainModels.Employee domainEntity)
+		public void AddEmployee(IDomainModel domainEntity)
 		{
 			try
 			{
@@ -37,7 +30,7 @@ namespace Domain.Logic
 			}
 		}
 
-		public void UpdateEmployee(DomainModels.Employee domainEntity)
+		public void UpdateEmployee(IDomainModel domainEntity)
 		{
 			try
 			{
@@ -50,7 +43,7 @@ namespace Domain.Logic
 			}
 		}
 
-		public DomainModels.Employee GetEmployee(long id)
+		public IDomainModel GetEmployee(long id)
 		{
 			try
 			{
@@ -64,7 +57,7 @@ namespace Domain.Logic
 			return null;
 		}
 
-		public IEnumerable<DomainModels.Employee> GetAllEmployees()
+		public IEnumerable<IDomainModel> GetAllEmployees()
 		{
 			try
 			{
@@ -75,14 +68,14 @@ namespace Domain.Logic
 			{
 				_logger.LogError(ex, "Not able to get all employees");
 			}
-			return new List<DomainModels.Employee>();
+			return new List<IDomainModel>();
 		}
 
-		public void DeleteEmployee(DomainModels.Employee employee)
+		public void DeleteEmployee(IDomainModel domainModel)
 		{
 			try
 			{
-				_mapping.DeleteDomainEntity(employee);
+				_mapping.DeleteDomainEntity(domainModel);
 			}
 			catch (Exception ex)
 			{
@@ -90,7 +83,7 @@ namespace Domain.Logic
 			}
 		}
 
-		public IEnumerable<DomainModels.Employee> FindEmployees(Expression<Func<DomainModels.Employee, bool>> predicate)
+		public IEnumerable<IDomainModel> FindEmployees(Expression<Func<IDomainModel, bool>> predicate)
 		{
 			try
 			{
@@ -101,7 +94,7 @@ namespace Domain.Logic
 			{
 				_logger.LogError(ex, "Not able to find employee");
 			}
-			return new List<DomainModels.Employee>();
+			return new List<IDomainModel>();
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace Repo.EF
         private IDbSet<T> _entities;
         public IDbSet<T> Entities => _entities ?? (_entities = _dbContext.Set<T>());
 
-        private Repository(DbContext dbContext)
+        public Repository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }

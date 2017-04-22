@@ -13,7 +13,7 @@ namespace Repo.Mapping
         private readonly IMapper _mapper;
         private readonly IRepository<TData> _repo;
 
-        private MappingDecorator(IMapper mapper, IRepository<TData> repo)
+        public MappingDecorator(IMapper mapper, IRepository<TData> repo)
         {
             _mapper = mapper;
             _repo = repo;

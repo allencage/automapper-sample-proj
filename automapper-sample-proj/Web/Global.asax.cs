@@ -8,6 +8,12 @@ using Autofac.Integration.Mvc;
 using Log.Logic;
 using Log.Contracts;
 using Domain.Logic;
+using Domain.Contracts;
+using Repo.EF;
+using AutoMapper;
+using System.Data.Entity;
+using Repo.Contracts;
+using Repo.Mapping;
 
 namespace Web
 {
@@ -16,12 +22,12 @@ namespace Web
 		protected void Application_Start()
 		{
 
-			//var mapperConfig = new AutoMapper.MapperConfiguration(cfg =>
-			//{
-			//	cfg.CreateMap<DataModels.Employee, DomainModels.Employee>().ReverseMap();
-			//	cfg.CreateMap<DataModels.Status, DomainModels.Status>().ReverseMap();
-			//});
-			//var mapper = mapperConfig.CreateMapper();
+			var mapperConfig = new MapperConfiguration(cfg =>
+			{
+				cfg.CreateMap<DataModels.Employee, DomainModels.EmployeeDomainModel>().ReverseMap();
+				cfg.CreateMap<DataModels.Status, DomainModels.Status>().ReverseMap();
+			});
+			var mapper = mapperConfig.CreateMapper();
 
 			//var logger = new CustomLog();
 			//var unit = Repo.EF.UnitOfWork.CreateUnitOfWorkWithCustomLog(logger);
@@ -30,14 +36,18 @@ namespace Web
 			//var logic = Domain.Logic.EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
 
 
-			//var builder = new ContainerBuilder();
-			//builder.RegisterControllers(typeof(MvcApplication).Assembly);
-			//builder.RegisterType<CustomLog>().As<ICustomLog>();
-			//builder.RegisterInstance(unit).As<Repo.Contracts.IUnitOfWork>();
-			//builder.RegisterType<Repo.EF.Repository<DataModels.Employee>>().As<Repo.Contracts.IRepository<DataModels.Employee>>();
-			//builder.RegisterType<Repo.Mapping.MappingDecorator<DataModels.Employee, DomainModels.Employee>>().As<Repo.Contracts.IMappingDecorator<DataModels.Employee, DomainModels.Employee>>();
-			//var container = builder.Build();
-			//DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+			var builder = new ContainerBuilder();
+			builder.RegisterControllers(typeof(MvcApplication).Assembly);
+			builder.RegisterInstance(mapper).As<IMapper>();
+			builder.RegisterType<CustomLog>().As<ICustomLog>();
+			builder.RegisterType<Repository<DataModels.Employee>>().As<IRepository<DataModels.Employee>>();
+
+			builder.RegisterType<MappingDecorator<DataModels.Employee, DomainModels.EmployeeDomainModel>>().As<IMappingDecorator<DataModels.Employee, DomainModels.EmployeeDomainModel>>();
+
+			builder.RegisterType<EmployeeLogic>().As<IEmployeeLogic>();
+			builder.RegisterType<DataContext>().As<DbContext>();
+			var container = builder.Build();
+			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
