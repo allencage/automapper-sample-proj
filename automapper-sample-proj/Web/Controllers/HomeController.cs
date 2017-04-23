@@ -7,9 +7,9 @@ namespace Web.Controllers
 {
 	public class HomeController : Controller
 	{
-		IEmployeeLogic _logic;
+		IEmployeeLogic<DomainModels.EmployeeDomainModel> _logic;
 
-		public HomeController(IEmployeeLogic logic)
+		public HomeController(IEmployeeLogic<DomainModels.EmployeeDomainModel> logic)
 		{
 			_logic = logic;
 		}

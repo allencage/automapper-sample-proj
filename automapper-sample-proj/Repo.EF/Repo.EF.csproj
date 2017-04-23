@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="Disposable.cs" />
+    <Compile Include="EmployeeRepository.cs" />
     <Compile Include="Migrations\201704141831442_employee-status-relations.cs" />
     <Compile Include="Migrations\201704141831442_employee-status-relations.Designer.cs">
       <DependentUpon>201704141831442_employee-status-relations.cs</DependentUpon>

@@ -4,13 +4,13 @@ using System.Linq.Expressions;
 
 namespace Domain.Contracts
 {
-	public interface IEmployeeLogic
+	public interface IEmployeeLogic<T> where T : class
 	{
-		void AddEmployee(IDomainModel domainEntity);
-		void UpdateEmployee(IDomainModel domainEntity);
-		IDomainModel GetEmployee(long id);
-		IEnumerable<IDomainModel> GetAllEmployees();
-		void DeleteEmployee(IDomainModel employee);
-		IEnumerable<IDomainModel> FindEmployees(Expression<Func<IDomainModel, bool>> predicate);
+		void AddEmployee(T domainEntity);
+		void UpdateEmployee(T domainEntity);
+		T GetEmployee(long id);
+		IEnumerable<T> GetAllEmployees();
+		void DeleteEmployee(T employee);
+		IEnumerable<T> FindEmployees(Expression<Func<T, bool>> predicate);
 	}
 }

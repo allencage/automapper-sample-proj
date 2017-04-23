@@ -29,22 +29,15 @@ namespace Web
 			});
 			var mapper = mapperConfig.CreateMapper();
 
-			//var logger = new CustomLog();
-			//var unit = Repo.EF.UnitOfWork.CreateUnitOfWorkWithCustomLog(logger);
-			//var repo = Repo.EF.Repository<DataModels.Employee>.CreateRepositoryWithDbContext(unit.DataContext);
-			//var mappingDecorator = Repo.Mapping.MappingDecorator<DataModels.Employee, DomainModels.Employee>.CreateMappingDecoratorWithMapperAndRepo(mapper, repo);
-			//var logic = Domain.Logic.EmployeeLogic.CreateLogicWithMappingDecoratorAndLogger(mappingDecorator, logger);
-
-
 			var builder = new ContainerBuilder();
 			builder.RegisterControllers(typeof(MvcApplication).Assembly);
 			builder.RegisterInstance(mapper).As<IMapper>();
 			builder.RegisterType<CustomLog>().As<ICustomLog>();
-			builder.RegisterType<Repository<DataModels.Employee>>().As<IRepository<DataModels.Employee>>();
+			builder.RegisterType<EmployeeRepository>().As<IRepository<DataModels.Employee>>();
 
 			builder.RegisterType<MappingDecorator<DataModels.Employee, DomainModels.EmployeeDomainModel>>().As<IMappingDecorator<DataModels.Employee, DomainModels.EmployeeDomainModel>>();
 
-			builder.RegisterType<EmployeeLogic>().As<IEmployeeLogic>();
+			builder.RegisterType<EmployeeLogic>().As<IEmployeeLogic<DomainModels.EmployeeDomainModel>>();
 			builder.RegisterType<DataContext>().As<DbContext>();
 			var container = builder.Build();
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
